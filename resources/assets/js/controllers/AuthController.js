@@ -9,7 +9,6 @@ angular.module('checkmate').controller('AuthController', ['$auth', '$state', '$r
             password: vm.password
         }
         
-        console.log(credentials);
         // Use Satellizer's $auth service to login
         $auth.login(credentials).then(function(data) {
         	$rootScope.loggedIn = true;

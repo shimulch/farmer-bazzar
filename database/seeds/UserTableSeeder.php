@@ -13,19 +13,20 @@ class UserTableSeeder extends Seeder
     {
         //TestDummy::times(20)->create('App\Post');
 
-        Model::unguard();
+        //DB::table('users')->delete();
 
-        DB::table('users')->delete();
-
-        $users = [
-        	['name' => 'Karim Sheikh', 'phone_no' => '01818353742', 'house' => 'Ghagra', 'village' => 'Ghagra', 'post_office' => 'Ghagra', 'post_code' => 4500, 'thana' => 'Kaukhali', 'district' => 'Rangamati', 'password' => \Hash::make('12345678')]
-        ];
-
-        foreach ($users as $user)
-        {
-            User::create($user);
-        }
-
-        Model::reguard();
+        $user = new User;
+        $user->name = 'Karim Sheikh';
+        $user->phone_no = '01818353742';
+        $user->house = 'Ghagra';
+        $user->village = 'Ghagra';
+        $user->post_office = 'Ghagra';
+        $user->post_code = 4500;
+        $user->thana = 'Kaukhali';
+        $user->district = 'Rangamati';
+        $user->password = \Hash::make('12345678');
+        $user->save();
+        
+        dd($user);
     }
 }

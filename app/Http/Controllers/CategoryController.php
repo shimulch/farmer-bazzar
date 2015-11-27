@@ -46,9 +46,9 @@ class CategoryController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($slug)
+	public function show($id)
 	{
-		$categories = Category::where('slug', $slug)->first()->getDescendants();
+		$categories = Category::find($id)->getDescendants();
 		return $categories;
 	}
 

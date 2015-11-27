@@ -27,4 +27,5 @@ Route::group(['prefix' => 'api'], function()
     Route::post('authenticate', 'AuthenticateController@authenticate');
 
     Route::resource('list-categories', 'CategoryController');
+    Route::resource('products', 'ProductController');
 });

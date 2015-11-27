@@ -2,3 +2,9 @@
 @import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
 @import '../bower_components/components-font-awesome/scss/font-awesome';
 @import 'loading-bar';
+
+.block {
+	border:1px solid #eee;
+	margin-bottom:10px;
+	padding:5px;
+}

@@ -1,6 +1,13 @@
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
+		<div class="alert alert-danger" ng-show="formErrors">
+			<ul>
+				<li ng-repeat="error in formErrors">
+					{{error}}
+				</li>
+			</ul>
+		</div>
 		<form>
 
 			<div class="form-group">
@@ -11,7 +18,7 @@
 			<div class="form-group">
 				<label for="main_category">পণ্যের ধরন</label>
 				<select class="form-control" id="main_category" ng-model = "main_category" ng-change="findSubCategory()">
-					<option ng-repeat="category in categories" value="{{category.slug}}">{{category.title}}</option>
+					<option ng-repeat="category in categories" value="{{category.id}}">{{category.title}}</option>
 				</select>
 			</div>
 
@@ -42,7 +49,7 @@
 
 
 			<div class="form-group">
-				<label for="price">পণ্যের	পরিমাণ</label>
+				<label for="quantity">পণ্যের	পরিমাণ</label>
 				<div class="row">
 					<div class="col-md-8">
 						<input type="number" ng-model="quantity" class="form-control">

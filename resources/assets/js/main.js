@@ -10,7 +10,8 @@ angular.module('checkmate').config(['$stateProvider', '$urlRouterProvider', '$au
 	$stateProvider
 		.state('home', {
 			url: '/',
-			templateUrl: '/tpl/home.html'
+			templateUrl: '/tpl/home.html',
+			controller: 'HomeController'
 		})
 		.state('login', {
 			url:'/login',

@@ -1,1 +1,24 @@
-<h1>This is Home! Sweet Home!</h1>
+<div class="row block" ng-repeat="product in products">
+	<div class="col-md-4">
+		<a href="{{product.id}}">
+			<img class="img-responsive img-thumbnail" src="/pictures/{{product.picture}}">
+		</a>
+	</div>
+	<div class="col-md-8">
+		<h4>
+			<a href="{{product.id}}">{{product.title}}</a>
+			<small>{{product.expiry_date}}</small>
+		</h4>
+		<p>পণ্যের ধরন : <a href="{{product.category.id}}">{{product.category.title}}</a></p>
+		<div>
+			<div class="pull-left">
+				<p>{{product.pricing_type}} {{product.price}} টাকা</p>
+				<p>মোট {{product.quantity}} {{product.unit}} আছে</p>
+			</div>
+			<div class="pull-right">
+				<p>বিক্রেতা : {{product.user.name}}</p>
+				<p>{{product.user.thana}}, {{product.user.district}}</p>
+			</div>
+		</div>
+	</div>
+</div>

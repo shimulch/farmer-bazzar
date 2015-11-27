@@ -9,4 +9,5 @@ angular.module('checkmate').controller('NavbarController', ['$http', '$rootScope
     	//console.log($rootScope.categories);
     });
     
+    $rootScope.loggedIn = $auth.isAuthenticated();
 }]);

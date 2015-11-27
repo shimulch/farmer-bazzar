@@ -1,0 +1,26 @@
+<div class="row block" ng-repeat="product in searchProducts">
+	<div class="col-md-4">
+		<a href="{{product.id}}">
+			<img class="img-responsive img-thumbnail" src="/pictures/{{product.picture}}">
+		</a>
+	</div>
+	<div class="col-md-8">
+		<h4>
+			<a ui-sref="singleProduct({productId:product.id})">{{product.title}}</a>
+		</h4>
+		</p>
+		<div>
+			<div class="pull-left">
+				<p>পণ্যের ধরন : <a ui-sref="singleCategory({categorySlug:product.slug})">{{product.c_title}}</a>
+				<p>{{product.pricing_type}} {{product.price}} টাকা</p>
+				<p>মোট {{product.quantity}} {{product.unit}} আছে</p>
+			</div>
+			<div class="pull-right">
+				<p>বিক্রেতা : {{product.name}}</p>
+				<p>{{product.thana}}, {{product.district}}</p>
+				<p>Exp: {{ product.expiry_date}}</p>
+			</div>
+		</div>
+	</div>
+</div>
+

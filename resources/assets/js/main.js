@@ -38,6 +38,12 @@ angular.module('checkmate').config(['$stateProvider', '$urlRouterProvider', '$au
 	        templateUrl: '/tpl/category-show.html',
 	        controller: 'CategoryProductController'
 	    })
+	    .state('search', {
+	        url: "/search?main_category&distrcit&search",
+	        templateUrl: '/tpl/search.html',
+	        controller: 'SearchController',
+	        reload: true
+	    })
 		.state('logout', {
 			url:'/logout',
 			controller: function($auth, $rootScope, $state){

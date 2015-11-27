@@ -30,7 +30,7 @@
         	<div class="row">
         		<div class="col-md-2">
         			<ul class="nav nav-pills nav-stacked">
-						<li ng-repeat="category in categories">
+						<li ng-repeat="category in categories" ui-sref-active="active">
 							<a ui-sref="singleCategory({categorySlug:category.slug})">{{category.title}}</a>
 						</li>
 					</ul>
@@ -38,33 +38,52 @@
         		<div class="col-md-10">
 
         			<div class="row searchWrapper">
-        				<form>
-	        				<div class="input-group">
-						      <input type="text" class="form-control" placeholder="Search for...">
-						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button">অনুসন্ধান</button>
-						      </span>
-						    </div><!-- /input-group -->
+        				<form ng-controller="SearchBoxController" class="form-horizontal">
+	        				
 
 						    <div class="row">
 
 						    	<div class="col-md-4">
 						    		<div class="form-group">
-										<label for="main_category">পণ্যের ধরন</label>
-										<select class="form-control" id="main_category" ng-model = "main_category" ng-change="findSubCategory()">
-											<option ng-repeat="category in categories" value="{{category.id}}">{{category.title}}</option>
-										</select>
+										<label for="main_category" class="col-sm-4 control-label">পণ্যের ধরন</label>
+										<div class="col-sm-8">
+											<select class="form-control" ng-change="search()" id="main_category" ng-model = "main_category" ng-change="findSubCategory()">
+												<option ng-repeat="category in categories" value="{{category.id}}">{{category.title}}</option>
+											</select>
+										</div>
 
 									</div>
 						    	</div>
 
 						    	<div class="col-md-4">
 						    		<div class="form-group">
+						    			
+						    			<label for="main_category" class="col-sm-4 control-label">জেলা</label>
+										<div class="col-sm-8">	
+											<select class="form-control" ng-change="search()" id="district" ng-model="district">
+												<option ng-repeat="district in districts" value="{{district.district}}">{{district.district}}</option>
+											</select>
+										</div>
 										
 									</div>
 						    	</div>
 
+						    	<div class="col-md-4">
+						    		<div class="input-group">
+								      <input type="text" class="form-control"  ng-model="searchText">
+								      <span class="input-group-btn">
+								        <button class="btn btn-default" ng-click="search()" type="submit">অনুসন্ধান</button>
+								      </span>
+								    </div><!-- /input-group -->
+						    	</div>
+
 						    </div>
+						    <div class="row">
+						    	<div class="col-md-12">
+								    <button ng-click='previousPage()' class="btn btn-info pull-left">Previous</button>
+									<button ng-click='nextPage()' class="btn btn-info pull-right">Next</button>
+								</div>
+							</div>
 					    </form>
         			</div>
 

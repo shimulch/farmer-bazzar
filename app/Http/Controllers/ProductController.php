@@ -147,4 +147,39 @@ class ProductController extends Controller {
 		//
 	}
 
+	public function search(){
+		$main_category = \Input::get('main_category');
+		$district = \Input::get('district');
+		$search = \Input::get('search');
+		$page = \Input::get('page');
+		$take = \Input::get('take');
+		$search = "%".$search."%";
+
+		$raw = "";
+		$params = [];
+		if($main_category != "" || $main_category != null) {
+			$raw .= "categories.id = :main_category and ";
+			$params['main_category'] = $main_category;
+		}
+		$raw .= "products.title like :search";
+		$params['search'] = $search;
+
+		$raw .= " and users.district like :district";
+		$params['district'] = "%".$district."%";		
+
+		$total = \DB::table('products')
+					->join('categories', 'products.category_id', '=', 'categories.id')
+					->join('users', 'products.user_id', '=', 'users.id')
+					->whereRaw($raw, $params)->count();
+
+		$products = \DB::table('products')
+					->join('categories', 'products.category_id', '=', 'categories.id')
+					->join('users', 'products.user_id', '=', 'users.id')
+					->whereRaw($raw, $params)
+					->skip(($page-1)*$take)
+					->take($take)
+					->get(['products.title', 'products.id', 'products.picture', 'products.price', 'products.pricing_type', 'products.quantity', 'products.unit', 'products.expiry_date', 'categories.title as c_title', 'categories.slug', 'categories.id as c_id', 'users.name', 'users.thana', 'users.district']);
+
+		return response()->json(['products' => $products, 'total' => $total], 200);
+	}
 }

@@ -26,6 +26,9 @@ Route::group(['prefix' => 'api'], function()
     Route::post('register', 'AuthenticateController@register');
     Route::post('authenticate', 'AuthenticateController@authenticate');
 
-    Route::resource('list-categories', 'CategoryController');
-    Route::resource('products', 'ProductController');
+    Route::resource('list-categories', 'CategoryController', ['except' => ['store', 'update', 'create']]);
+    Route::resource('list-categories.products', 'ProductController', ['except' => ['show', 'store', 'update', 'create']]);
+    Route::get('products', 'ProductController@allProducts');
+    Route::get('products/{id}', 'ProductController@show');
+    Route::post('products', 'ProductController@store');
 });

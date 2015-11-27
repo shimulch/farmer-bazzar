@@ -18,12 +18,24 @@ class ProductController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($categorySlug)
 	{
+		$category = \App\Category::where('slug', $categorySlug)->first();
+		$allCategories = $category->getDescendants();
+		$ids[] = $category->id;
+		foreach ($allCategories as $c) {
+			$ids[] = $c->id;
+		}
+
+		return \App\Product::with('category', 'user')->whereIn('category_id', $ids)->get();
+		
+	}
+
+
+	public function allProducts(){
 		$products = \App\Product::with('category', 'user')->get();
 		return $products;
 	}
-
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -49,7 +61,7 @@ class ProductController extends Controller {
 			'pricing_type' => 'required',
 			'quantity' => 'required|numeric',
 			'unit' => 'required',
-			'expiry_date' => 'required|date_format:m/d/Y',
+			'expiry_date' => 'required|date|date_format:m/d/Y',
 			'file' => 'mimes:jpeg,bmp,png'
 		];
 		$date  = date('m/d/Y', strtotime($request->expiry_date));
@@ -76,7 +88,7 @@ class ProductController extends Controller {
 		$product->pricing_type= $request->pricing_type;
 		$product->quantity= $request->quantity;
 		$product->unit= $request->unit;
-		$product->expiry_date= $request->expiry_date;
+		$product->expiry_date= strtotime($request->expiry_date);
 
 		if (\File::exists($request->file('file')))
 		{	
@@ -99,7 +111,7 @@ class ProductController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		return \App\Product::with('user', 'category')->find($id); 
 	}
 
 	/**

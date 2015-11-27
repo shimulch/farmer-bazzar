@@ -31,11 +31,43 @@
         		<div class="col-md-2">
         			<ul class="nav nav-pills nav-stacked">
 						<li ng-repeat="category in categories">
-							<a href="{{category.slug}}">{{category.title}}</a>
+							<a ui-sref="singleCategory({categorySlug:category.slug})">{{category.title}}</a>
 						</li>
 					</ul>
         		</div>
         		<div class="col-md-10">
+
+        			<div class="row searchWrapper">
+        				<form>
+	        				<div class="input-group">
+						      <input type="text" class="form-control" placeholder="Search for...">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button">অনুসন্ধান</button>
+						      </span>
+						    </div><!-- /input-group -->
+
+						    <div class="row">
+
+						    	<div class="col-md-4">
+						    		<div class="form-group">
+										<label for="main_category">পণ্যের ধরন</label>
+										<select class="form-control" id="main_category" ng-model = "main_category" ng-change="findSubCategory()">
+											<option ng-repeat="category in categories" value="{{category.id}}">{{category.title}}</option>
+										</select>
+
+									</div>
+						    	</div>
+
+						    	<div class="col-md-4">
+						    		<div class="form-group">
+										
+									</div>
+						    	</div>
+
+						    </div>
+					    </form>
+        			</div>
+
         			<div ui-view></div>
         		</div>
         	</div>

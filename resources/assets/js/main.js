@@ -28,6 +28,16 @@ angular.module('checkmate').config(['$stateProvider', '$urlRouterProvider', '$au
 			templateUrl: '/tpl/upload-product.html',
 			controller: 'UploadProductController'
 		})
+		.state('singleProduct', {
+	        url: "/product/:productId",
+	        templateUrl: '/tpl/product-show.html',
+	        controller: 'SingleProductController'
+	    })
+	    .state('singleCategory', {
+	        url: "/category/:categorySlug/products",
+	        templateUrl: '/tpl/category-show.html',
+	        controller: 'CategoryProductController'
+	    })
 		.state('logout', {
 			url:'/logout',
 			controller: function($auth, $rootScope, $state){

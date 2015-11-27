@@ -2,6 +2,8 @@ angular.module('checkmate').controller('HomeController', ['$http', '$scope', '$s
 
 	$http.get('/api/products').then(function(response){
 		$scope.products = response.data;
+		console.log(response);
+		
 	});
 
 }]);

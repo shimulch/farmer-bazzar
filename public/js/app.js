@@ -28,6 +28,16 @@ angular.module('checkmate').config(['$stateProvider', '$urlRouterProvider', '$au
 			templateUrl: '/tpl/upload-product.html',
 			controller: 'UploadProductController'
 		})
+		.state('singleProduct', {
+	        url: "/product/:productId",
+	        templateUrl: '/tpl/product-show.html',
+	        controller: 'SingleProductController'
+	    })
+	    .state('singleCategory', {
+	        url: "/category/:categorySlug/products",
+	        templateUrl: '/tpl/category-show.html',
+	        controller: 'CategoryProductController'
+	    })
 		.state('logout', {
 			url:'/logout',
 			controller: function($auth, $rootScope, $state){
@@ -74,10 +84,21 @@ angular.module('checkmate').controller('AuthController', ['$auth', '$state', '$r
     }
 
 }]);
+angular.module('checkmate').controller('CategoryProductController', ['$http', '$scope', '$stateParams', function($http, $scope, $stateParams){
+
+	$http.get('/api/list-categories/' + $stateParams.categorySlug + '/products').then(function(response){
+		
+		$scope.products = response.data;
+			
+	});
+
+}]);
 angular.module('checkmate').controller('HomeController', ['$http', '$scope', '$state', function($http, $scope, $state){
 
 	$http.get('/api/products').then(function(response){
 		$scope.products = response.data;
+		console.log(response);
+		
 	});
 
 }]);
@@ -118,6 +139,16 @@ angular.module('checkmate').controller('RegisterController', ['$http', '$scope',
 				$scope.formErrors = response.errors;
 			});
 	}
+
+}]);
+angular.module('checkmate').controller('SingleProductController', ['$http', '$scope', '$stateParams', function($http, $scope, $stateParams){
+
+	console.log($stateParams);
+	$http.get('/api/products/' + $stateParams.productId).then(function(response){
+		
+		$scope.product = response.data;
+			
+	});
 
 }]);
 angular.module('checkmate').controller('UploadProductController', [ 'fileUpload', '$scope', '$http', '$rootScope', function( fileUpload, $scope, $http, $rootScope){

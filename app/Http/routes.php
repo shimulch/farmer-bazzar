@@ -15,15 +15,16 @@ Route::get('/', function(){
 	return view('app');
 });
 
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::get('/test', function() {
+	 $categories = \App\Category::all();
+	 dd($categories);
+});
 
 Route::group(['prefix' => 'api'], function()
 {
+
     Route::post('register', 'AuthenticateController@register');
     Route::post('authenticate', 'AuthenticateController@authenticate');
+
+    Route::resource('list-categories', 'CategoryController');
 });

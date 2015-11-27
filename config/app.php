@@ -197,7 +197,9 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		
 		'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
-		'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
+		'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+		'NestedSet' => 'Kalnoy\Nestedset\NestedSet',
+    	'Node' => 'Kalnoy\Nestedset\Node',
 
 	],
 

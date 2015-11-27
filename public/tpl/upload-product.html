@@ -1,0 +1,77 @@
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<form>
+
+			<div class="form-group">
+				<label for="title">পণ্যের নাম</label>
+				<input type="text" class="form-control" id="title" ng-model = "title">
+			</div>
+
+			<div class="form-group">
+				<label for="main_category">পণ্যের ধরন</label>
+				<select class="form-control" id="main_category" ng-model = "main_category" ng-change="findSubCategory()">
+					<option ng-repeat="category in categories" value="{{category.slug}}">{{category.title}}</option>
+				</select>
+			</div>
+
+			<div class="form-group" ng-show="subCategories">
+				<label for="sub_category"></label>
+				<select class="form-control" id="sub_category" ng-model = "sub_category">
+					<option ng-repeat="category in subCategories" value="{{category.id}}">{{category.title}}</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="price">পণ্যের	দাম</label>
+				<div class="row">
+					<div class="col-md-8">
+						<input type="number" ng-model="price" class="form-control">
+					</div>
+					<div class="col-md-4">
+						<select ng-model="pricing_type" class="form-control">
+							<option value="প্রতি কেজি" selected="selected">প্রতি কেজি</option>
+							<option value="প্রতি মণ">প্রতি মণ</option>
+							<option value="প্রতি লিটার">প্রতি লিটার</option>
+							<option value="প্রতিটি">প্রতিটি</option>
+						</select>
+					</div>
+				</div>
+				
+			</div>
+
+
+			<div class="form-group">
+				<label for="price">পণ্যের	পরিমাণ</label>
+				<div class="row">
+					<div class="col-md-8">
+						<input type="number" ng-model="quantity" class="form-control">
+					</div>
+					<div class="col-md-4">
+						<select ng-model="unit" class="form-control">
+							<option value="কেজি" selected="selected">কেজি</option>
+							<option value="মণ">মণ</option>
+							<option value="পিস">পিস</option>
+							<option value="লিটার">লিটার</option>
+						</select>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="form-group">
+				<label for="expiry_date">মেয়াদ উত্তীর্ণের তারিখ</label>
+				<input class="form-control" type="date" ng-model="expiry_date">
+			</div>
+
+
+			<div class="form-group">
+				<input type="file" file-model="myFile"/><br/>
+			</div>
+
+			<div class="form-group">
+				<button type="submit" ng-click="upload()" class="btn btn-success">আপলোড করুন</button>
+			</div>
+		</form>
+	</div>
+</div>

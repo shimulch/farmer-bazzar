@@ -1,4 +1,4 @@
-angular.module('checkmate').controller('RegisterController', ['$http', '$scope', function($http, $scope){
+angular.module('checkmate').controller('RegisterController', ['$http', '$scope', '$state', function($http, $scope, $state){
 
 	$scope.submit = function(){
 		var data = {
@@ -16,8 +16,9 @@ angular.module('checkmate').controller('RegisterController', ['$http', '$scope',
 
 		$http.post('/api/register', data)
 			.success(function(response){
-				
+				$state.go('login');
 			}).error(function(response){
+				console.log(response);
 				$scope.formErrors = response.errors;
 			});
 	}

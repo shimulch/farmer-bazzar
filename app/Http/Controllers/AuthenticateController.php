@@ -18,8 +18,11 @@ class AuthenticateController extends Controller {
     }
     
 	
+    /*
+    * Register function
+    */
     public function register(Request $request){
-        $v = [
+        $rules = [
             'name' => 'required',
             'phone_no' => 'required|unique:users',
             'house' => 'required',
@@ -47,11 +50,23 @@ class AuthenticateController extends Controller {
 
 
 
-        $valid = \Validator::make($data, $v);
+        $valid = \Validator::make($data, $rules);
 
         if($valid->fails()) return response()->json(['errors' => $valid->errors()->all()], 400);
-        else return response()->json(['success' => 'success'], 200);
-
+        else {
+            $user = new \App\User;
+            $user->name = $request->name;
+            $user->phone_no = $request->phone_no;
+            $user->house = $request->house;
+            $user->village = $request->village;
+            $user->post_office = $request->post_office;
+            $user->post_code = $request->post_code;
+            $user->thana = $request->thana;
+            $user->district = $request->district;
+            $user->password = \Hash::make($request->password);
+            $user->save();
+            return response()->json(['success' => 'success'], 200);
+        }
     }
 
 

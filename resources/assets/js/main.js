@@ -22,6 +22,11 @@ angular.module('checkmate').config(['$stateProvider', '$urlRouterProvider', '$au
 			templateUrl: '/tpl/register.html',
 			controller: 'RegisterController as register'
 		})
+		.state('upload-product', {
+			url: '/upload-product',
+			templateUrl: '/tpl/upload-product.html',
+			controller: 'UploadProductController'
+		})
 		.state('logout', {
 			url:'/logout',
 			controller: function($auth, $rootScope, $state){

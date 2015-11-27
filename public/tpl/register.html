@@ -1,0 +1,70 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			
+			<div class="alert alert-danger" ng-show="formErrors">
+				<ul>
+					<li ng-repeat="error in formErrors">
+						{{error}}
+					</li>
+				</ul>
+			</div>
+
+			<form>
+			  <div class="form-group">
+			    <label for="name">Full Name</label>
+			    <input type="text" class="form-control" id="name" ng-model = "name">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="phone_no">Phone No</label>
+			    <input type="text" class="form-control" id="phone_no" ng-model="phone_no">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="house">House</label>
+			    <input type="text" class="form-control" id="house" ng-model="house">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="village">Village</label>
+			    <input type="text" class="form-control" id="village" ng-model="village">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="post_office">Post Office</label>
+			    <input type="text" class="form-control" id="post_office" ng-model="post_office">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="post_code">Post Code</label>
+			    <input type="text" class="form-control" id="post_code" ng-model="post_code">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="thana">Thana</label>
+			    <input type="text" class="form-control" id="thana" ng-model="thana">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="district">District</label>
+			    <input type="text" class="form-control" id="district" ng-model="district">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="password">Password</label>
+			    <input type="text" class="form-control" id="password" ng-model="password">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="confirm_password">Confirm Password</label>
+			    <input type="text" class="form-control" id="confirm_password" ng-model="confirm_password">
+			  </div>
+			  
+			  
+			  <button type="submit" class="btn btn-default" ng-click="submit()">Submit</button>
+			</form>
+
+		</div>
+	</div>
+</div>

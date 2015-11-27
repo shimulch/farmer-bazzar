@@ -21,3 +21,9 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::group(['prefix' => 'api'], function()
+{
+    Route::post('register', 'AuthenticateController@register');
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+});

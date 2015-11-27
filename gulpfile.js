@@ -20,7 +20,8 @@ elixir(function(mix) {
     		'bootstrap-sass/assets/javascripts/bootstrap.js',
     		'angular/angular.js',
     		'angular-ui-router/release/angular-ui-router.js',
-    		'angular-bootstrap/ui-bootstrap-tpls.js'
+    		'angular-bootstrap/ui-bootstrap-tpls.js',
+    		'../other_vendors/**/*.js'
     		], 'public/js/vendor.js', 'resources/assets/bower_components/')
     	.scriptsIn('resources/assets/js', 'public/js/app.js');
 });

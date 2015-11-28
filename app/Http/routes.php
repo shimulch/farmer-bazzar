@@ -27,10 +27,11 @@ Route::group(['prefix' => 'api'], function()
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('user-data', 'AuthenticateController@userData');
     Route::post('change-profile-picture', 'AuthenticateController@changeProfilePicture');
+    
+    Route::get('products/search', 'ProductController@search');
     Route::resource('list-categories', 'CategoryController', ['except' => ['store', 'update', 'create']]);
     Route::resource('list-categories.products', 'ProductController', ['except' => ['show', 'store', 'update', 'create']]);
     Route::get('products', 'ProductController@allProducts');
-    Route::get('products/search', 'ProductController@search');
     Route::get('products/{id}', 'ProductController@show');
     
     Route::resource('products.ratings', 'RatingController', ['except' => ['create', 'update', 'edit', 'delete']]);

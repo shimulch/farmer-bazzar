@@ -219,7 +219,7 @@ angular.module('checkmate').controller('SingleProductController', ['$http', '$sc
 	});
 
 }]);
-angular.module('checkmate').controller('UploadProductController', [ 'fileUpload', '$scope', '$http', '$rootScope', function( fileUpload, $scope, $http, $rootScope){
+angular.module('checkmate').controller('UploadProductController', [ 'fileUpload', '$scope', '$http', '$rootScope', '$state', function( fileUpload, $scope, $http, $rootScope, $state){
 
     $scope.title ="";
     $scope.main_category="";
@@ -262,6 +262,7 @@ angular.module('checkmate').controller('UploadProductController', [ 'fileUpload'
             headers: {'Content-Type': undefined}
         }).success(function(response){
             console.log(response);
+            $state.go('singleProduct', {productId:response.id});
         })
         .error(function(response){
             $scope.formErrors = response.errors;

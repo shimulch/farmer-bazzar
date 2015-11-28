@@ -1,6 +1,26 @@
-<div class="row">
-	<div class="col-md-12">
-		<h3>{{product.title}}</h3>
-		<img src="/pictures/{{product.picture}}">
+<div class="col-md-12">
+	<h4>
+		<a ui-sref="singleProduct({productId:product.id})">{{product.title}}</a>
+		<small>{{ product.expiry_date}}</small>
+	</h4>
+	
+	<img src="/pictures/{{product.picture}}" class="img-responsive">
+
+	<div>
+		<div class="pull-left">
+			<p>পণ্যের ধরন : <a ui-sref="singleCategory({categorySlug:product.category.slug})">{{product.category.title}}</a></p>
+			<p>{{product.pricing_type}} {{product.price}} টাকা</p>
+			<p>মোট {{product.quantity}} {{product.unit}} আছে</p>
+		</div>
+		<div class="pull-right">
+
+				<uib-rating ng-model="product.rating = calc(product.ratings)" max="5" 
+				readonly="true"></uib-rating>
+			
+
+			<p>বিক্রেতা : {{product.user.name}}</p>
+			<p>মোবাইল নাম্বার : {{product.user.phone_no}}</p>
+			<p>{{product.user.thana}}, {{product.user.district}}</p>
+		</div>
 	</div>
 </div>

@@ -1,6 +1,6 @@
 <html ng-app="checkmate">
 	<head>
-		<title>Laravel</title>
+		<title>কৃষক বাজার</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="/css/app.css">
 
@@ -10,17 +10,19 @@
 		<nav class="navbar navbar-default" ng-controller="NavbarController">
 	        <div class="container">
 	            <div class="navbar-header">
-	                <a class="navbar-brand" href="/">Farmar Bazzar</a>
+	                <a class="navbar-brand" href="/">
+	                	কৃষক বাজার
+	                </a>
 	            </div>
 
 	            <ul class="nav navbar-nav navbar-right">
-	                <li ng-class="{ active: isActive('/')}"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+	                <li ng-class="{ active: isActive('/')}"><a href="#"><i class="fa fa-home"></i> হোম</a></li>
 	                
-	                <li ng-show="loggedIn" ng-class="{ active: isActive('/edit')}"><a ui-sref="edit">Edit</a> </li>
-	                <li ng-hide="loggedIn" ng-class="{ active: isActive('/login')}"><a ui-sref="login">Login</a></li>
-	                <li ng-hide="loggedIn" ng-class="{ active: isActive('/register')}"><a ui-sref="register">Register</a></li>
-	    			<li ng-show="loggedIn" ng-class="{ active: isActive('/upload-product')}"><a ui-sref="upload-product">Upload New Product</a></li>
-	                <li ng-show="loggedIn" ng-class="{ active: isActive('/logout')}"><a ui-sref="logout">Logout</a></li>
+	                <li ng-show="loggedIn" ng-class="{ active: isActive('/edit')}"><a ui-sref="edit">তথ্য পরিবর্তন</a> </li>
+	                <li ng-hide="loggedIn" ng-class="{ active: isActive('/login')}"><a ui-sref="login">লগ ইন</a></li>
+	                <li ng-hide="loggedIn" ng-class="{ active: isActive('/register')}"><a ui-sref="register">নিবন্ধন করুন</a></li>
+	    			<li ng-show="loggedIn" ng-class="{ active: isActive('/upload-product')}"><a ui-sref="upload-product">নতুন পণ্য যুক্ত করুন</a></li>
+	                <li ng-show="loggedIn" ng-class="{ active: isActive('/logout')}"><a ui-sref="logout">লগ আউট</a></li>
 	            </ul>
 	        </div>
         </nav>
@@ -80,8 +82,8 @@
 						    </div>
 						    <div class="row">
 						    	<div class="col-md-12">
-								    <button ng-click='previousPage()' class="btn btn-info pull-left">Previous</button>
-									<button ng-click='nextPage()' class="btn btn-info pull-right">Next</button>
+								    <button ng-click='previousPage()' class="btn btn-info pull-left">আগের পৃষ্ঠা</button>
+									<button ng-click='nextPage()' class="btn btn-info pull-right">পরের পৃষ্ঠা</button>
 								</div>
 							</div>
 					    </form>

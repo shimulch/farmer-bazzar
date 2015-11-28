@@ -15,7 +15,7 @@ class CategoryTableSeeder extends Seeder
 
         Model::unguard();
 
-        DB::table('users')->delete();
+        DB::table('categories')->delete();
 
         Category::create(
             ['title' => 'root', 
@@ -24,18 +24,79 @@ class CategoryTableSeeder extends Seeder
                         'title' => 'শাক সবজি',
                         'slug' => 'vegitables',
                         'children' => [
-                            ['title' => 'ধান', 'slug' => 'peddy']
+                            ['title' => 'আলু', 'slug' => 'potato'],
+                            ['title' => 'বেগুন', 'slug' => 'begun'],
+                            ['title' => 'পটল', 'slug' => 'potol'],
+                            ['title' => 'টমেটো', 'slug' => 'tomato'],
+                            ['title' => 'লাউ', 'slug' => 'lao'],
+                            ['title' => 'মিষ্টি কুমড়া', 'slug' => 'misti-kumra'],
                         ]
 
                     ],
                     ['title' => 'পোল্ট্রি', 'slug' => 'poltri'],
                     ['title' => 'মাছ', 'slug' => 'fish'],
-                    ['title' => 'শস্য জাতীয় ফসল', 'slug' => 'grain-crops'],
-                    ['title' => 'তৈল জাতীয় ফসল', 'slug' => 'oil-crops'],
-                    ['title' => 'ডাল জাতীয় ফসল', 'slug' => 'dal-crops'],
-                    ['title' => 'মসলা জাতীয় ফসল', 'slug' => 'spice-crops'],
-                    ['title' => 'ফল', 'slug' => 'fruits'],
-                    ['title' => 'ফুল', 'slug' => 'flowers'],
+                    [
+                        'title' => 'শস্য জাতীয় ফসল', 
+                        'slug' => 'grain-crops',
+                        'children' => [
+                            ['title' => 'ধাঁন', 'slug' => 'peddy'],
+                            ['title' => 'গম', 'slug' => 'job'],
+                            ['title' => 'ভুট্টা', 'slug' => 'corn'],
+                            ['title' => 'চাল', 'slug' => 'rice'],
+                            ['title' => 'আটা', 'slug' => 'flour']
+                        ]
+                    ],
+                    [   
+                        'title' => 'তৈল জাতীয় ফসল', 
+                        'slug' => 'oil-crops',
+                        'children' => [
+                            ['title' => 'সরিষা', 'slug' => 'sorisa'],
+                            ['title' => 'সয়াবিন', 'slug' => 'soyabin'],
+                            ['title' => 'তিল', 'slug' => 'til']
+                        ]
+                    ],
+                    [
+                        'title' => 'ডাল জাতীয় ফসল', 
+                        'slug' => 'dal-crops',
+                        'children' => [
+                            ['title' => 'মসুর ডাল', 'slug' => 'mosur'],
+                            ['title' => 'মুগ ডাল', 'slug' => 'mug'],
+                            ['title' => 'মাসকলাই ডাল', 'slug' => 'maskolai'],
+                            ['title' => 'ছোলা ডাল', 'slug' => 'chola'],
+                            ['title' => 'মটরশুটি', 'slug' => 'motorsuti']
+                        ]
+                    ],
+                    [
+                        'title' => 'মসলা জাতীয় ফসল', 
+                        'slug' => 'spice-crops',
+                        'children' => [
+                            ['title' => 'পেঁয়াজ', 'slug' => 'paise'],
+                            ['title' => 'রসুন', 'slug' => 'rosun'],
+                            ['title' => 'মরিচ', 'slug' => 'morich'],
+                            ['title' => 'আদা', 'slug' => 'ada'],
+                            ['title' => 'ধনিয়া', 'slug' => 'dhonia']
+                        ]
+                    ],
+                    [
+                        'title' => 'ফলমূল', 
+                        'slug' => 'fruits',
+                        'children' => [
+                            ['title' => 'আম', 'slug' => 'mango'],
+                            ['title' => 'জাম', 'slug' => 'berry'],
+                            ['title' => 'কাঁঠাল', 'slug' => 'jackfruit'],
+                            ['title' => 'কলা', 'slug' => 'banana'],
+                            ['title' => 'পেঁয়ারা', 'slug' => 'goaba']
+                        ]
+                    ],
+                    [
+                        'title' => 'ফুল', 
+                        'slug' => 'flowers',
+                        'children' => [
+                            ['title' => 'গোলাপ', 'slug' => 'golap'],
+                            ['title' => 'রজনীগন্ধা', 'slug' => 'rojonigondha'],
+                            ['title' => 'গাঁদা', 'slug' => 'gada']
+                        ]
+                    ],
                 ]
             ]
         );

@@ -16,7 +16,7 @@ class CategoryController extends Controller {
 	 */
 	public function index()
 	{
-		$categories = Category::withDepth()->having('depth', '=', 1)->descendantsOf(1);
+		$categories = Category::withDepth()->having('depth', '=', 1)->descendantsOf(12);
 		return $categories;
 	}
 

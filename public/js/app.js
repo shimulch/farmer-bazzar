@@ -1,4 +1,4 @@
-angular.module('checkmate', ['ui.router', 'ui.bootstrap', 'satellizer', 'angular-loading-bar']);
+angular.module('checkmate', ['ui.router', 'ui.bootstrap', 'satellizer', 'angular-loading-bar', 'angular-input-stars']);
 
 
 angular.module('checkmate').config(['$stateProvider', '$urlRouterProvider', '$authProvider', function ($stateProvider, $urlRouterProvider, $authProvider){
@@ -54,12 +54,10 @@ angular.module('checkmate').config(['$stateProvider', '$urlRouterProvider', '$au
 
 			}
 		})
-		.state('about', {
-			url: '/about',
-			templateUrl:'/tpl/about.html',
-			controller: function($scope){
-				 $scope.items = ["A", "List", "Of", "Sajid"];
-			}
+		.state('edit', {
+			url: '/edit',
+			templateUrl:'/tpl/edit.html',
+			controller: 'UserController'
 		});
 
 }]);
@@ -90,14 +88,34 @@ angular.module('checkmate').controller('AuthController', ['$auth', '$state', '$r
     }
 
 }]);
-angular.module('checkmate').controller('CategoryProductController', ['$http', '$scope', '$stateParams', function($http, $scope, $stateParams){
+angular.module('checkmate').controller('CategoryProductController', ['$http', '$scope', '$stateParams', '$rootScope', function($http, $scope, $stateParams, $rootScope){
 
 	$http.get('/api/list-categories/' + $stateParams.categorySlug + '/products').then(function(response){
 		
 		$scope.products = response.data;
+
+
 			
 	});
+	$scope.calc = function(ratings){
+		var total = 0;
+		for(var i = 0; i<ratings.length; i++){
+			total += ratings[i].rating;
+		}
+		console.log(total);
+		$scope.rate = (total/ratings.length);
+	};
 
+	$scope.isReadonly = !$rootScope.loggedIn;
+	
+	$scope.doRate = function (itemId){
+		console.log($scope.rate);
+		$http.post('/api/products/'+itemId+'/ratings', {rating: $scope.rate}).then(function(response){
+			console.log(response);
+		});
+
+	};
+	
 }]);
 angular.module('checkmate').controller('HomeController', ['$http', '$scope', '$state', function($http, $scope, $state){
 
@@ -190,10 +208,6 @@ angular.module('checkmate').controller('SearchBoxController', ['$window', '$http
 angular.module('checkmate').controller('SearchController', [ '$location', '$http', '$rootScope', '$state', function($location, $http, $rootScope, $state){
 
 	
-	
-
-
-	
 }]);
 angular.module('checkmate').controller('SingleProductController', ['$http', '$scope', '$stateParams', function($http, $scope, $stateParams){
 
@@ -255,9 +269,36 @@ angular.module('checkmate').controller('UploadProductController', [ 'fileUpload'
         });;
     };
 }]);
-angular.module('checkmate').controller('UserController', ['$auth', '$state', function($auth, $state){
+angular.module('checkmate').controller('UserController', ['fileUpload', '$scope', '$http', '$auth', '$state', function(fileUpload, $scope, $http, $auth, $state){
 
+	$http.get('/api/user-data').success(function(response){
+		$scope.userData = response;
+		console.log(response);
+	}).error(function(response){
+		console.log(response);
+		//$state.go('/login');
+	});
 	
+
+	$scope.upload = function(){
+        var file = $scope.myFile;
+       
+        var uploadUrl = "/api/change-profile-picture";
+    
+        var fd = new FormData();
+        fd.append('file', file);
+        
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        }).success(function(response){
+            $scope.userData = response;
+        })
+        .error(function(response){
+            $scope.formErrors = response.errors;
+            console.log(response);
+        });;
+    };
 
 }]);
 angular.module('checkmate').directive('fileModel', ['$parse', function ($parse) {

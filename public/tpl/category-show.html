@@ -9,13 +9,19 @@
 			<a ui-sref="singleProduct({productId:product.id})">{{product.title}}</a>
 			<small>{{ product.expiry_date}}</small>
 		</h4>
-		<p>পণ্যের ধরন : <a ui-sref="singleCategory({categorySlug:product.category.slug})">{{product.category.title}}</a></p>
+		
 		<div>
 			<div class="pull-left">
+				<p>পণ্যের ধরন : <a ui-sref="singleCategory({categorySlug:product.category.slug})">{{product.category.title}}</a></p>
 				<p>{{product.pricing_type}} {{product.price}} টাকা</p>
 				<p>মোট {{product.quantity}} {{product.unit}} আছে</p>
 			</div>
 			<div class="pull-right">
+
+					<uib-rating ng-model="product.rating = calc(product.ratings)" max="5" 
+					readonly="true"></uib-rating>
+				
+
 				<p>বিক্রেতা : {{product.user.name}}</p>
 				<p>{{product.user.thana}}, {{product.user.district}}</p>
 			</div>

@@ -1,4 +1,4 @@
-angular.module('checkmate', ['ui.router', 'ui.bootstrap', 'satellizer', 'angular-loading-bar']);
+angular.module('checkmate', ['ui.router', 'ui.bootstrap', 'satellizer', 'angular-loading-bar', 'angular-input-stars']);
 
 
 angular.module('checkmate').config(['$stateProvider', '$urlRouterProvider', '$authProvider', function ($stateProvider, $urlRouterProvider, $authProvider){
@@ -54,12 +54,10 @@ angular.module('checkmate').config(['$stateProvider', '$urlRouterProvider', '$au
 
 			}
 		})
-		.state('about', {
-			url: '/about',
-			templateUrl:'/tpl/about.html',
-			controller: function($scope){
-				 $scope.items = ["A", "List", "Of", "Sajid"];
-			}
+		.state('edit', {
+			url: '/edit',
+			templateUrl:'/tpl/edit.html',
+			controller: 'UserController'
 		});
 
 }]);

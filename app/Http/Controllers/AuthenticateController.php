@@ -87,4 +87,37 @@ class AuthenticateController extends Controller {
         return response()->json(compact('token'));
     }
 
+    public function userData(Request $request)
+    {
+       $user = \Auth::user();
+       return $user;
+    }
+
+
+    public function changeProfilePicture(Request $request){
+        $validator = [
+            'file' => 'required|mimes:jpeg,bmp,png'
+        ];
+
+        $data = [
+            'file' => $request->file('file')
+        ];
+
+        $valid = \Validator::make($data, $validator);
+        if($valid->fails()) return response()->json(['errors' => $valid->errors()->all()], 400);
+
+        $user = \App\User::find(\Auth::user()->id);
+
+        if (\File::exists($request->file('file')))
+        {   
+            $image = \Input::file('file');
+            $filename = date('Y-m-d-H:i:s') .".". $image->getClientOriginalExtension();
+            
+            $request->file('file')->move(public_path().'/pictures/', $filename);
+            $user->picture = $filename;
+            $user->save();
+        }
+
+        return $user;
+    }
 }

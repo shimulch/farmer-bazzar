@@ -16,7 +16,7 @@
 	            <ul class="nav navbar-nav navbar-right">
 	                <li ng-class="{ active: isActive('/')}"><a href="#"><i class="fa fa-home"></i> Home</a></li>
 	                
-
+	                <li ng-show="loggedIn" ng-class="{ active: isActive('/edit')}"><a ui-sref="edit">Edit</a> </li>
 	                <li ng-hide="loggedIn" ng-class="{ active: isActive('/login')}"><a ui-sref="login">Login</a></li>
 	                <li ng-hide="loggedIn" ng-class="{ active: isActive('/register')}"><a ui-sref="register">Register</a></li>
 	    			<li ng-show="loggedIn" ng-class="{ active: isActive('/upload-product')}"><a ui-sref="upload-product">Upload New Product</a></li>

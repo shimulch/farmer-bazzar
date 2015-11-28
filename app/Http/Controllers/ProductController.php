@@ -27,7 +27,7 @@ class ProductController extends Controller {
 			$ids[] = $c->id;
 		}
 
-		return \App\Product::with('category', 'user')->whereIn('category_id', $ids)->get();
+		return \App\Product::with('category', 'user', 'ratings')->whereIn('category_id', $ids)->get();
 		
 	}
 
